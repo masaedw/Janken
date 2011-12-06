@@ -23,20 +23,20 @@ module Janken =
         | Scissors, Paper -> Left
         | Scissors, Scissors -> Draw
 
-    let parse s =
-        match (s:string).ToLower() with
-        | x when x.StartsWith("r") -> Rock
-        | x when x.StartsWith("p") -> Paper
-        | x when x.StartsWith("s") -> Scissors
-        | _ -> failwith "argument is not in (r,p,s)"
+    let (|JankenHand|_|) j =
+        match (j:string).ToLower() with
+        | x when x.StartsWith("r") -> Some Rock
+        | x when x.StartsWith("p") -> Some Paper
+        | x when x.StartsWith("s") -> Some Scissors
+        | _ -> None
 
 module JankenMain =
 
     open Janken
 
     let main = function
-        | [|_; l; r |] ->
-            match Janken (parse l) (parse r) with
+        | [|_; JankenHand l; JankenHand r|] ->
+            match Janken l r with
             | Draw -> "draw"
             | Left -> "Left wins"
             | Right -> "Right wins"
