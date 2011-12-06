@@ -24,8 +24,8 @@ let parse s =
     match (s:string).ToLower() with
     | x when x.StartsWith("r") -> Rock
     | x when x.StartsWith("p") -> Paper
-    | x when x.StartsWith("c") -> Scissors
-    | _ -> failwith "argument is not in (r,p,c)"
+    | x when x.StartsWith("s") -> Scissors
+    | _ -> failwith "argument is not in (r,p,s)"
 
 let main = function
     | [|_; l; r |] ->
@@ -36,7 +36,7 @@ let main = function
         |> printfn "%s"
         0
     | _ ->
-        printfn "fsi Janken.fsx {R,P,C} {R,P,C}"
+        printfn "fsi Janken.fsx {R,P,S} {R,P,S}"
         1
 
 main fsi.CommandLineArgs
