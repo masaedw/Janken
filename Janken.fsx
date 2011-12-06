@@ -1,6 +1,7 @@
 module Janken =
 
     type JankenHand =
+        private
         | Rock
         | Paper
         | Scissors
